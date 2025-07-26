@@ -1,34 +1,40 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-function SearchBar({ onSubmit }) {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleChange = (e) => setSearchTerm(e.target.value);
+export default function SearchBar({ onSearch }) {
+  const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(searchTerm.trim());
+
+    const trimmedQuery = query.trim();
+
+    if (trimmedQuery === "") {
+      toast.error("Lütfen bir arama terimi girin.");
+      return;
+    }
+
+    onSearch(trimmedQuery);
+    setQuery("");
   };
 
   return (
     <header className={css.header}>
       <form onSubmit={handleSubmit} className={css.form}>
         <input
-          className={css.input}
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
-          value={searchTerm}
-          onChange={handleChange}
+          placeholder="Görsel ara..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className={css.input}
         />
         <button type="submit" className={css.button}>
-          Search
+          Ara
         </button>
       </form>
     </header>
   );
 }
-
-export default SearchBar;

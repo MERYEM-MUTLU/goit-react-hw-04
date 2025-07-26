@@ -2,7 +2,7 @@
   display: grid; /* inline-grid yerine */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  margin-top: 40px; /* 400px çok fazla olabilir */
+  margin-top: 40px;
   list-style: none;
   padding: 0;
   justify-content: center;

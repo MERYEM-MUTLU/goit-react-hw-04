@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <SearchBar onSubmit={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       <Toaster position="top-right" />
 
       {error && <ErrorMessage message={error} />}
